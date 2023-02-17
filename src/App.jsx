@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useState } from "react";
 
+import Header from "./components/Header";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [expense, setExpense] = useState(0);
 
   return (
     <div>
-      <h1>Hello World</h1>
+      <Header expense={expense} setExpense={setExpense} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
