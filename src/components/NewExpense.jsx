@@ -1,12 +1,19 @@
-import React from "react";
+import { useState } from "react";
+import Message from "./Message";
 
 const NewExpense = ({ expense, setExpense }) => {
+  const [message, setMessage] = useState("");
 
   const handleExpense = (e) => {
     e.preventDefault();
 
-    console.log("Enviando Formulario")
-  }
+    // Validación
+    if (!Number(expense) || Number(expense) < 0) {
+      setMessage("No es un Presupuesto Valido");
+    } else {
+      console.log("Si es un presupuesto valido");
+    }
+  };
 
   return (
     <div className="contenedor-presupuesto contenedor sombra">
@@ -23,6 +30,7 @@ const NewExpense = ({ expense, setExpense }) => {
         </div>
 
         <input type="submit" value="añadir" />
+        {message && <Message type="error">{message}</Message>}
       </form>
     </div>
   );
