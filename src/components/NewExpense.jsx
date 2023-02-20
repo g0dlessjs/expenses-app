@@ -1,18 +1,20 @@
 import { useState } from "react";
 import Message from "./Message";
 
-const NewExpense = ({ expense, setExpense }) => {
+const NewExpense = ({ expense, setExpense, setIsValidExpense }) => {
   const [message, setMessage] = useState("");
 
   const handleExpense = (e) => {
     e.preventDefault();
 
     // Validación
-    if (!Number(expense) || Number(expense) < 0) {
+    if (!expense || expense < 0) {
       setMessage("No es un Presupuesto Valido");
-    } else {
-      console.log("Si es un presupuesto valido");
+      return;
     }
+    // Limpiando mensaje
+    setMessage("");
+    setIsValidExpense(true);
   };
 
   return (
@@ -25,7 +27,7 @@ const NewExpense = ({ expense, setExpense }) => {
             type="text"
             placeholder="Añade tu puestupuesto.."
             value={expense}
-            onChange={(e) => setExpense(e.target.value)}
+            onChange={(e) => setExpense(Number(e.target.value))}
           />
         </div>
 
